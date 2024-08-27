@@ -76,7 +76,10 @@ export default function AddUserModal({
       <div className="modal-box relative">
         <form method="dialog" onKeyDown={handleKeyPress}>
           <button
-            onClick={onClose}
+            onClick={() => {
+              onClose();
+              setImagePreview(null);
+            }}
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
           >
             <X />
@@ -149,7 +152,7 @@ export default function AddUserModal({
           </div>
           <div className="flex mt-6 justify-end">
             <button type="submit" className="btn btn-accent">
-              Save
+              SAVE
             </button>
           </div>
         </form>

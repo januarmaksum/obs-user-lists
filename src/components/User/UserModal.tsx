@@ -11,6 +11,7 @@ interface UserModalProps {
 
 const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
   const { selectedUser, setUsers } = useUserStore();
+  console.log('selectedUser: ', selectedUser);
   const dialog = React.useRef<HTMLDialogElement>(null);
   const [userDetails, setUserDetails] = React.useState<Partial<IUser>>({
     firstName: "",
@@ -34,7 +35,7 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
       reader.onloadend = () => {
         setUserDetails((prevDetails) => ({
           ...prevDetails,
-          avatar: reader.result as string, // base64 string
+          avatar: reader.result as string, // base64
         }));
       };
       reader.readAsDataURL(file);
@@ -162,18 +163,18 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
           </div>
           <div className="flex mt-6 justify-between">
             <div className="text-xs font-normal text-slate-300 flex items-end">
-              * You can edit delete user
+              * You can edit and delete user
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               <button
                 type="button"
                 className="btn btn-error btn-outline"
                 onClick={handleDelete}
               >
-                Delete
+                DELETE
               </button>
               <button type="submit" className="btn btn-accent ">
-                Save
+                SAVE
               </button>
             </div>
           </div>

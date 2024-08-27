@@ -1,18 +1,17 @@
 import * as React from "react";
+import { CaptionsOff } from "lucide-react";
 import Heading from "@/components/Heading";
 import UserLists from "@/components/User/UserLists";
 import UserCardSkeleton from "@/components/User/UserCardSkeleton";
 import AddUserModal from "@/components/User/AddUserModal";
 import useUserStore from "@/store/userStore";
 import { fetchUsers } from "@/services/userService";
-import { CaptionsOff } from "lucide-react";
 import { IUser } from "@/interfaces/user.interface";
-
-// Utility function to generate a random numeric ID
-const generateRandomId = () => Math.floor(Math.random() * 1_000_000);
+import { generateRandomId } from "@/utils";
 
 function App() {
   const { users, setUsers } = useUserStore();
+  console.log("users app: ", users);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -47,87 +46,21 @@ function App() {
     avatar?: File;
   }) => {
     try {
-      // Generate a random numeric ID
       const newUserId = generateRandomId();
 
-      // Create a new user object with only the relevant fields
       const newUser: IUser = {
         id: newUserId,
+        username: `${userDetails.firstName.toLowerCase()}${userDetails.lastName.toLowerCase()}`,
         firstName: userDetails.firstName,
         lastName: userDetails.lastName,
         avatar: userDetails.avatar
           ? URL.createObjectURL(userDetails.avatar)
           : "",
-        // Provide default values for other required fields
-        image: "",
-        age: 0,
-        gender: "",
-        email: "",
-        phone: "",
-        username: "",
-        birthDate: "",
-        bloodGroup: "",
-        height: 0,
-        weight: 0,
-        eyeColor: "",
-        hair: {
-          color: "",
-          type: "",
-        },
-        address: {
-          address: "",
-          city: "",
-          state: "",
-          stateCode: "",
-          postalCode: "",
-          country: "",
-          coordinates: {
-            lat: 0,
-            lng: 0,
-          },
-        },
-        macAddress: "",
-        university: "",
-        bank: {
-          cardExpire: "",
-          cardNumber: "",
-          cardType: "",
-          currency: "",
-          iban: "",
-        },
-        company: {
-          department: "",
-          name: "",
-          title: "",
-          address: {
-            address: "",
-            city: "",
-            state: "",
-            stateCode: "",
-            postalCode: "",
-            country: "",
-            coordinates: {
-              lat: 0,
-              lng: 0,
-            },
-          },
-        },
-        ein: "",
-        ssn: "",
-        userAgent: "",
-        crypto: {
-          coin: "",
-          wallet: "",
-          network: "",
-        },
-        role: "",
       };
 
-      // Update Zustand store with new user details
       setUsers([...users, newUser]);
     } catch (error) {
       console.error("Failed to save user", error);
-      // Handle error (e.g., show notification or error message)
     } finally {
       handleCloseModal();
     }
@@ -135,7 +68,7 @@ function App() {
 
   return (
     <div className="p-4 min-h-screen container mx-auto">
-      <Heading onAddUser={handleAddUser} />
+      <Heading onAddUser={handleAddUser} error={error} />
       <AddUserModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}

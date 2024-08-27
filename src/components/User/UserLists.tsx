@@ -13,6 +13,7 @@ const UserLists: React.FC<UserListsProps> = ({ users }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const handleClickCard = (user: IUser) => {
+    console.log('user click: ', user);
     setSelectedUser(user);
     setIsModalOpen(true);
   };
