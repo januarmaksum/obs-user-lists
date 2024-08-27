@@ -59,4 +59,5 @@ export interface IUser {
     network: string;
   };
   role: string;
+  avatar?: string;
 }
