@@ -15,7 +15,6 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
   const [userDetails, setUserDetails] = React.useState<Partial<IUser>>({
     firstName: "",
     lastName: "",
-    email: "",
     username: "",
     avatar: "",
   });
@@ -87,7 +86,6 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
       setUserDetails({
         firstName: selectedUser.firstName,
         lastName: selectedUser.lastName,
-        email: selectedUser.email,
         username: selectedUser.username,
         avatar: selectedUser.avatar || "",
       });
