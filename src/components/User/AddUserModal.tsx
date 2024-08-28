@@ -52,21 +52,31 @@ export default function AddUserModal({
     }
   };
 
-  const handleSave = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (!userDetails.avatar) {
-      setFileError("Please upload avatar.");
-      return;
-    }
-
-    onSave(userDetails);
+  const resetForm = () => {
     setUserDetails({
       firstName: "",
       lastName: "",
       avatar: undefined,
     });
     setImagePreview(null);
+    setFileError(null);
+  };
+
+  const handleSave = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (!userDetails.avatar) {
+      setFileError("Please upload avatar.");
+      setUserDetails({
+        ...userDetails,
+        avatar: undefined,
+      });
+      setImagePreview(null);
+      return;
+    }
+
+    onSave(userDetails);
+    resetForm();
     onClose();
   };
 
@@ -75,6 +85,7 @@ export default function AddUserModal({
       dialog.current.showModal();
     } else if (!isOpen && dialog.current) {
       dialog.current.close();
+      resetForm();
     }
   }, [isOpen]);
 
@@ -85,7 +96,7 @@ export default function AddUserModal({
           <button
             onClick={() => {
               onClose();
-              setImagePreview(null);
+              resetForm();
             }}
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
           >
@@ -123,7 +134,6 @@ export default function AddUserModal({
           <input
             type="file"
             id="fileInputAdd"
-            name="fileInputAdd"
             className="file-input hidden"
             accept="image/png, image/jpeg, image/jpg"
             onChange={handleFileChange}

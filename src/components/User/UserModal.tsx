@@ -130,7 +130,6 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
           <input
             type="file"
             id="fileInputEdit"
-            name="fileInputEdit"
             className="file-input hidden"
             accept="image/png, image/jpeg, image/jpg"
             onChange={handleFileChange}
