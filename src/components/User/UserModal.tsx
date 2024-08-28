@@ -51,9 +51,9 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
         .getState()
         .users.filter((user) => user.id !== selectedUser.id);
       setUsers(updatedUsers);
+      Toastr.success('User deleted successfully.');
     }
     onClose();
-    Toastr.success('User deleted successfully.');
   };
 
   const handleSave = (event: React.FormEvent) => {
@@ -65,9 +65,9 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
           user.id === selectedUser.id ? { ...user, ...userDetails } : user
         );
       setUsers(updatedUsers);
+      Toastr.success('User updated successfully.');
     }
     onClose();
-    Toastr.success('User updated successfully.');
   };
 
   const handleKeyPress = (event: React.KeyboardEvent) => {
