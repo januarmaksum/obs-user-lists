@@ -1,50 +1,75 @@
-# React + TypeScript + Vite
+# OBS Frontend Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+Welcome to the OBS Frontend assignment. This project is a simple user management interface built with React and TypeScript. The application demonstrates the ability to fetch, display, and manage user data in a responsive UI.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **User Interface**: Built using React with [TailwindCSS](https://tailwindcss.com/).
+- **Responsive Design**: The application is responsive on both desktop and mobile devices.
+- **Data Fetching**: JSON data is fetched from REST API endpoints.
+- **State Management**: Centralized state using [Zustand](https://zustand-demo.pmnd.rs/).
+- **User Management**: Features to add, edit, and delete users, updating the state accordingly.
+- **Environment Configuration**: TypeScript, ESLint, and Prettier configured for consistent and error-free development.
+- **Unit Testing**: Implemented using React Testing Library.
+- **Deployment**: Hosted on [Vercel](https://vercel.com/) for a live demo. You can access the live demo [here](https://obs-user-lists-six.vercel.app/).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting Started
 
-- Configure the top-level `parserOptions` property like this:
+### Prerequisites
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [npm](https://www.npmjs.com/)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone git@github.com:yourusername/obs-user-lists.git
+   cd obs-user-lists
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+### Environment Variables
+
+Create a .env file in the root of your project and add the following: <br>
+This variable controls the number of users fetched from the API.
+
+```bash
+   VITE_FETCH_LIMIT=10
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Running the Application
+To start the development server, run:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```bash
+   npm run dev
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Project Structure
+
+- **/src**: Contains the main application code.
+- **/components**: Reusable components like UserList, UserModal, Toast etc.
+- **/store**: State management using Zustand.
+- **/interfaces**: TypeScript interfaces and types.
+- **/services**: API calls and data fetching functions.
+- **/public**: Static assets and public files.
+- **/tests**: Unit tests for various components.
+
+## Deployment
+The application has been deployed to Vercel. You can access the live demo [here](https://obs-user-lists-six.vercel.app/)
+
+## Additional Information
+
+- Dummy API: The user list is fetched from [DummyJSON](https://dummyjson.com/docs/users/) and profile images from [Picsum](https://picsum.photos/).
+- State Management: Zustand is used to manage global state, ensuring efficient state updates and easy scalability.
+- Modal for User Details: User details are displayed in a modal, allowing easy editing and deletion of users.
