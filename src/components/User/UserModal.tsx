@@ -114,10 +114,7 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
             >
               <div className="mask mask-squircle w-24 relative">
                 <img
-                  src={
-                    userDetails.avatar ||
-                    `https://i.pravatar.cc/250?u=${userDetails.username}`
-                  }
+                  src={userDetails.avatar ?? ""}
                   alt={`${userDetails.firstName} ${userDetails.lastName}`}
                   className="w-16 h-16"
                 />
@@ -130,6 +127,7 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
           <input
             type="file"
             id="fileInputEdit"
+            name="fileInputEdit"
             className="file-input hidden"
             accept="image/png, image/jpeg, image/jpg"
             onChange={handleFileChange}

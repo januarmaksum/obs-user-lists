@@ -25,7 +25,7 @@ export default function UserCard({
       <div className="avatar">
         <div className="mask mask-squircle w-16 md:w-24">
           <img
-            src={avatar || `https://i.pravatar.cc/250?u=${username}`}
+            src={avatar ?? ""}
             alt={`${firstName} ${lastName}`}
             className="h-auto max-w-full"
           />

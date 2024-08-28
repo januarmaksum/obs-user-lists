@@ -14,6 +14,7 @@ function App() {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [isToastVisible, setIsToastVisible] = React.useState(false);
 
   React.useEffect(() => {
     const getUsers = async () => {
@@ -45,7 +46,6 @@ function App() {
   }) => {
     try {
       const newUserId = generateRandomId();
-
       const newUser: IUser = {
         id: newUserId,
         username: `${userDetails.firstName.toLowerCase()}${userDetails.lastName.toLowerCase()}`,
@@ -56,7 +56,11 @@ function App() {
           : "",
       };
 
-      setUsers([...users, newUser]);
+      setUsers([newUser, ...users]);
+      setIsToastVisible(true);
+      setTimeout(() => {
+        setIsToastVisible(false);
+      }, 3000);
     } catch (error) {
       console.error("Failed to save user", error);
     } finally {
@@ -65,13 +69,20 @@ function App() {
   };
 
   return (
-    <div className="p-4 min-h-screen container mx-auto">
+    <div className="p-4 min-h-screen container max-w-7xl mx-auto">
       <Heading onAddUser={handleAddUser} error={error} loading={loading} />
       <AddUserModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onSave={handleSave}
       />
+      {isToastVisible && (
+        <div className="toast toast-end">
+          <div className="alert alert-success">
+            <span>User added successfully!</span>
+          </div>
+        </div>
+      )}
       {loading && !error ? (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {Array.from({ length: 12 }).map((_, index) => (

@@ -26,6 +26,7 @@ export default function AddUserModal({
     lastName: "",
   });
   const [imagePreview, setImagePreview] = React.useState<string | null>(null);
+  const [fileError, setFileError] = React.useState<string | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -36,6 +37,7 @@ export default function AddUserModal({
         setImagePreview(e.target?.result as string);
       };
       reader.readAsDataURL(file);
+      setFileError(null);
     }
   };
 
@@ -52,14 +54,20 @@ export default function AddUserModal({
 
   const handleSave = (event: React.FormEvent) => {
     event.preventDefault();
+
+    if (!userDetails.avatar) {
+      setFileError("Please upload avatar.");
+      return;
+    }
+
     onSave(userDetails);
-    onClose();
     setUserDetails({
       firstName: "",
       lastName: "",
       avatar: undefined,
     });
     setImagePreview(null);
+    onClose();
   };
 
   React.useEffect(() => {
@@ -115,10 +123,12 @@ export default function AddUserModal({
           <input
             type="file"
             id="fileInputAdd"
+            name="fileInputAdd"
             className="file-input hidden"
             accept="image/png, image/jpeg, image/jpg"
             onChange={handleFileChange}
           />
+          {fileError && <p className="text-red-500 text-center">{fileError}</p>}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
             <label className="form-control w-full">
               <div className="label">
