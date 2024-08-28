@@ -70,12 +70,6 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
     onClose();
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-    }
-  };
-
   React.useEffect(() => {
     if (isOpen && dialog.current) {
       dialog.current.showModal();

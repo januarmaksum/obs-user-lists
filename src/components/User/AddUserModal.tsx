@@ -46,12 +46,6 @@ export default function AddUserModal({
     setUserDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-    }
-  };
-
   const resetForm = () => {
     setUserDetails({
       firstName: "",
