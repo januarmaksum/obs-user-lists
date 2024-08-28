@@ -8,7 +8,7 @@ interface HeadingProps {
 
 export default function Heading({ onAddUser, error, loading }: HeadingProps) {
   return (
-    <div className="flex border-b-2 pb-3 justify-between items-center gap-3 mb-4">
+    <div className="flex border-b-2 pb-3 justify-between items-center gap-3 mb-4 sticky lg:static top-0 z-50 backdrop-blur lg:backdrop-blur-0 pt-3 lg:pt-0 px-4 lg:px-0">
       <a href="/" className="flex items-center gap-1 md:gap-3 hover:text-white">
         <CircleUserRound size={30} />
         <h1 className="text-lg md:text-3xl font-bold">User Lists</h1>

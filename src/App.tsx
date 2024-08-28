@@ -58,7 +58,7 @@ function App() {
   };
 
   return (
-    <div className="p-4 min-h-screen container max-w-7xl mx-auto">
+    <div className="p-0 lg:p-4 min-h-screen container max-w-7xl mx-auto">
       <Heading
         onAddUser={() => setIsModalOpen(true)}
         error={error}

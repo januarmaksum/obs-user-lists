@@ -23,7 +23,7 @@ const UserLists: React.FC<UserListsProps> = ({ users }) => {
   };
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 pt-0 lg:p-0">
       {users.map((user) => (
         <UserCard
           key={user.id}
