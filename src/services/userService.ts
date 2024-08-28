@@ -18,7 +18,7 @@ const fetchUserData = async (): Promise<IUser[]> => {
 
 // fetch avatars
 const fetchAvatars = async (): Promise<string[]> => {
-  const response = await axios.get<IPicsumImage[]>(`https://picsum.photos/v2/list?page=1&limit=${limit}`);
+  const response = await axios.get<IPicsumImage[]>(`https://picsum.photos/v2/list?limit=${limit}`);
   return response.data?.map((image: IPicsumImage) => `https://picsum.photos/id/${image.id}/100/100`);
 };
 
