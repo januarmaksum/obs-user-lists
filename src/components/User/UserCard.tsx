@@ -1,4 +1,4 @@
-// using relative path, because using @ alias it doesn't work for testing
+// using relative path, because using @ alias it doesn't work for unit testing
 import { IUser } from "../../interfaces/user.interface";
 import useUserStore from "../../store/userStore";
 
