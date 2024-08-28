@@ -28,16 +28,16 @@ Ensure you have the following installed:
 
 1. Clone the repository:
 
-   ```bash
-   git clone git@github.com:your_username/obs-user-lists.git
-   cd obs-user-lists
-   ```
+```bash
+git clone git@github.com:your_username/obs-user-lists.git
+cd obs-user-lists
+```
 
 2. Install dependencies:
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
 ### Environment Variables
 
@@ -45,29 +45,29 @@ Create a .env file in the root of your project and add the following: <br>
 This variable controls the number of users fetched from the API.
 
 ```bash
-   VITE_FETCH_LIMIT=10
+VITE_FETCH_LIMIT=10
 ```
 
 ### Running the Application
 To start the development server, run:
 
 ```bash
-   npm run dev
-   ```
+npm run dev
+```
 
 ### Building for Production
 To build the project for production, run:
 
 ```bash
-   npm run build
-   ```
+npm run build
+```
 
 ### Running Tests
 To run unit tests, use:
 
 ```bash
-   npm run test
-   ```
+npm run test
+```
 
 ## Project Structure
 
@@ -85,6 +85,6 @@ The application has been deployed to Vercel. You can access the live demo [here]
 
 ## Additional Information
 
-- Dummy API: The user list is fetched from [DummyJSON](https://dummyjson.com/docs/users/) and profile images from [Picsum](https://picsum.photos/).
-- State Management: Zustand is used to manage global state, ensuring efficient state updates and easy scalability.
-- Modal for User Details: User details are displayed in a modal, allowing easy editing and deletion of users.
+- **Dummy API**: The user list is fetched from [DummyJSON](https://dummyjson.com/docs/users/) and profile images from [Picsum](https://picsum.photos/).
+- **State Management**: Zustand is used to manage global state, ensuring efficient state updates and easy scalability.
+- **Modal for User Details**: User details are displayed in a modal, allowing easy editing and deletion of users.
