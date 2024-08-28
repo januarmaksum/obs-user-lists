@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CaptionsOff } from "lucide-react";
+import { UserSearch } from "lucide-react";
 import Heading from "@/components/Heading";
 import UserLists from "@/components/User/UserLists";
 import UserCardSkeleton from "@/components/User/UserCardSkeleton";
@@ -11,7 +11,6 @@ import { generateRandomId } from "@/utils";
 
 function App() {
   const { users, setUsers } = useUserStore();
-  console.log("users app: ", users);
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -21,8 +20,7 @@ function App() {
       try {
         const users = await fetchUsers();
         setUsers(users);
-      } catch (error) {
-        console.error("Failed to fetch users", error);
+      } catch {
         setError("Failed to load users. Please try again later.");
       } finally {
         setLoading(false);
@@ -68,7 +66,7 @@ function App() {
 
   return (
     <div className="p-4 min-h-screen container mx-auto">
-      <Heading onAddUser={handleAddUser} error={error} />
+      <Heading onAddUser={handleAddUser} error={error} loading={loading} />
       <AddUserModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
@@ -82,7 +80,7 @@ function App() {
         </div>
       ) : error ? (
         <div className="flex pt-60 justify-center items-center flex-col gap-5">
-          <CaptionsOff size={104} />
+          <UserSearch size={104} />
           <h2 className="text-2xl">{error}</h2>
         </div>
       ) : (

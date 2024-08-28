@@ -1,7 +1,8 @@
 import axios from "axios";
 import { IUser } from "@/interfaces/user.interface";
+import { IPicsumImage } from "@/interfaces/avatar.interface";
 
-// Function to fetch users
+// fetch users
 const fetchUserData = async (): Promise<IUser[]> => {
   const response = await axios.get("https://dummyjson.com/users?limit=12");
   const users = response.data?.users || [];
@@ -10,23 +11,23 @@ const fetchUserData = async (): Promise<IUser[]> => {
     firstName: user.firstName,
     lastName: user.lastName,
     username: user.username,
-    avatar: null, // Default avatar is null
+    avatar: null,
   }));
 };
 
-// Function to fetch avatars
+// fetch avatars
 const fetchAvatars = async (): Promise<string[]> => {
-  const response = await axios.get("https://picsum.photos/v2/list?page=1&limit=12");
-  return response.data.map((image: any) => image.download_url);
+  const response = await axios.get<IPicsumImage[]>("https://picsum.photos/v2/list?page=1&limit=12");
+  return response.data?.map((image: IPicsumImage) => `https://picsum.photos/id/${image.id}/100/100`);
 };
 
-// Combined function to fetch users and avatars
+// Combined fetch users and avatars
 export const fetchUsers = async (): Promise<IUser[]> => {
   try {
     const [users, avatars] = await Promise.all([fetchUserData(), fetchAvatars()]);
     return users.map((user, index) => ({
       ...user,
-      avatar: avatars[index] || null, // Assign avatar from fetched images
+      avatar: avatars[index] || null,
     }));
   } catch (error) {
     console.error("Failed to fetch users or avatars: ", error);

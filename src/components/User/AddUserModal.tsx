@@ -1,6 +1,5 @@
-import { ImageUp, X } from "lucide-react";
 import * as React from "react";
-import { UserPlus } from "lucide-react";
+import { ImageUp, X, UserPlus } from "lucide-react";
 
 interface AddUserModalProps {
   isOpen: boolean;
@@ -72,7 +71,7 @@ export default function AddUserModal({
   }, [isOpen]);
 
   return (
-    <dialog className="modal" ref={dialog}>
+    <dialog className="modal modal-bottom sm:modal-middle" ref={dialog}>
       <div className="modal-box relative">
         <form method="dialog" onKeyDown={handleKeyPress}>
           <button
@@ -92,7 +91,7 @@ export default function AddUserModal({
           <div className="flex justify-center mb-3">
             <div
               className="avatar cursor-pointer relative"
-              onClick={() => document.getElementById("fileInput")?.click()}
+              onClick={() => document.getElementById("fileInputAdd")?.click()}
             >
               <div className="mask mask-squircle w-24 relative">
                 {!imagePreview && (
@@ -107,7 +106,7 @@ export default function AddUserModal({
                     className="w-16 h-16"
                   />
                 )}
-                <div className="absolute inset-0 bg-black flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute inset-0 bg-black flex items-center justify-center opacity-0 md:hover:opacity-100 transition-opacity duration-300">
                   <ImageUp className="text-white" size={36} />
                 </div>
               </div>
@@ -115,13 +114,13 @@ export default function AddUserModal({
           </div>
           <input
             type="file"
-            id="fileInput"
+            id="fileInputAdd"
             className="file-input hidden"
             accept="image/png, image/jpeg, image/jpg"
             onChange={handleFileChange}
           />
-          <div className="grid grid-cols-2 gap-4">
-            <label className="form-control w-full max-w-xs">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
+            <label className="form-control w-full">
               <div className="label">
                 <span className="label-text">First Name</span>
               </div>
@@ -131,11 +130,11 @@ export default function AddUserModal({
                 placeholder="Type here"
                 value={userDetails.firstName}
                 onChange={handleChange}
-                className="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full"
                 required
               />
             </label>
-            <label className="form-control w-full max-w-xs">
+            <label className="form-control w-full">
               <div className="label">
                 <span className="label-text">Last Name</span>
               </div>
@@ -145,7 +144,7 @@ export default function AddUserModal({
                 placeholder="Type here"
                 value={userDetails.lastName}
                 onChange={handleChange}
-                className="input input-bordered w-full max-w-xs"
+                className="input input-bordered w-full"
                 required
               />
             </label>
