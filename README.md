@@ -12,7 +12,7 @@ Welcome to the OBS Frontend assignment. This project is a simple user management
 - **State Management**: Centralized state using [Zustand](https://zustand-demo.pmnd.rs/).
 - **User Management**: Features to add, edit, and delete users, updating the state accordingly.
 - **Environment Configuration**: TypeScript, ESLint, and Prettier configured for consistent development.
-- **Unit Testing**: Implemented using React Testing Library.
+- **Unit Testing**: Implemented using [Vitest](https://vitest.dev/) Library.
 - **Deployment**: Hosted on [Vercel](https://vercel.com/) for a live demo. You can access the live demo [here](https://obs-user-lists-six.vercel.app/).
 
 ## Getting Started
@@ -21,7 +21,7 @@ Welcome to the OBS Frontend assignment. This project is a simple user management
 
 Ensure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (v14 or higher)
+- [Node.js](https://nodejs.org/) (v18 or higher)
 - [npm](https://www.npmjs.com/)
 
 ### Installation
@@ -29,7 +29,7 @@ Ensure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone git@github.com:yourusername/obs-user-lists.git
+   git clone git@github.com:your_username/obs-user-lists.git
    cd obs-user-lists
    ```
 
@@ -55,6 +55,20 @@ To start the development server, run:
    npm run dev
    ```
 
+### Building for Production
+To build the project for production, run:
+
+```bash
+   npm run build
+   ```
+
+### Running Tests
+To run unit tests, use:
+
+```bash
+   npm run test
+   ```
+
 ## Project Structure
 
 - **/src**: Contains the main application code.
@@ -63,7 +77,8 @@ To start the development server, run:
 - **/interfaces**: TypeScript interfaces and types.
 - **/services**: API calls and data fetching functions.
 - **/public**: Static assets and public files.
-- **/tests**: Unit tests for various components.
+- **/utils**: Utility functions for tasks such as generating random IDs.
+- **/src/components/User/UserCard.test.tsx**: Simple unit test for render user and avatar element using mock data.
 
 ## Deployment
 The application has been deployed to Vercel. You can access the live demo [here](https://obs-user-lists-six.vercel.app/)
