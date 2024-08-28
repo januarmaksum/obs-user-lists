@@ -1,5 +1,6 @@
 import * as React from "react";
-import { UserSearch } from "lucide-react";
+import { UserSearch, UserRoundX } from "lucide-react";
+import { Toastr } from "@/components/Toast";
 import Heading from "@/components/Heading";
 import UserLists from "@/components/User/UserLists";
 import UserCardSkeleton from "@/components/User/UserCardSkeleton";
@@ -14,7 +15,6 @@ function App() {
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [isToastVisible, setIsToastVisible] = React.useState(false);
 
   React.useEffect(() => {
     const getUsers = async () => {
@@ -30,14 +30,6 @@ function App() {
 
     getUsers();
   }, [setUsers]);
-
-  const handleAddUser = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
 
   const handleSave = async (userDetails: {
     firstName: string;
@@ -57,32 +49,26 @@ function App() {
       };
 
       setUsers([newUser, ...users]);
-      setIsToastVisible(true);
-      setTimeout(() => {
-        setIsToastVisible(false);
-      }, 3000);
-    } catch (error) {
-      console.error("Failed to save user", error);
+      Toastr.success("User added successfully.");
+    } catch {
+      Toastr.error("Failed to save user. Please try again later.");
     } finally {
-      handleCloseModal();
+      setIsModalOpen(false);
     }
   };
 
   return (
     <div className="p-4 min-h-screen container max-w-7xl mx-auto">
-      <Heading onAddUser={handleAddUser} error={error} loading={loading} />
+      <Heading
+        onAddUser={() => setIsModalOpen(true)}
+        error={error}
+        loading={loading}
+      />
       <AddUserModal
         isOpen={isModalOpen}
-        onClose={handleCloseModal}
+        onClose={() => setIsModalOpen(false)}
         onSave={handleSave}
       />
-      {isToastVisible && (
-        <div className="toast toast-end">
-          <div className="alert alert-success">
-            <span>User added successfully!</span>
-          </div>
-        </div>
-      )}
       {loading && !error ? (
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {Array.from({ length: 12 }).map((_, index) => (
@@ -90,9 +76,14 @@ function App() {
           ))}
         </div>
       ) : error ? (
-        <div className="flex pt-60 justify-center items-center flex-col gap-5">
+        <div className="flex pt-60 justify-center items-center flex-col gap-5 text-center">
           <UserSearch size={104} />
           <h2 className="text-2xl">{error}</h2>
+        </div>
+      ) : users.length === 0 ? (
+        <div className="flex pt-60 justify-center items-center flex-col gap-5 text-center">
+          <UserRoundX size={104} />
+          <h2 className="text-2xl">User not found. Please add user.</h2>
         </div>
       ) : (
         <UserLists users={users} />

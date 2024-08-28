@@ -2,6 +2,7 @@ import * as React from "react";
 import { ImageUp, X } from "lucide-react";
 import useUserStore from "@/store/userStore";
 import { IUser } from "@/interfaces/user.interface";
+import { Toastr } from "@/components/Toast";
 
 interface UserModalProps {
   title: string;
@@ -52,6 +53,7 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
       setUsers(updatedUsers);
     }
     onClose();
+    Toastr.success('User deleted successfully.');
   };
 
   const handleSave = (event: React.FormEvent) => {
@@ -65,6 +67,7 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
       setUsers(updatedUsers);
     }
     onClose();
+    Toastr.success('User updated successfully.');
   };
 
   const handleKeyPress = (event: React.KeyboardEvent) => {

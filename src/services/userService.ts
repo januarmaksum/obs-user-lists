@@ -1,10 +1,11 @@
 import axios from "axios";
 import { IUser } from "@/interfaces/user.interface";
 import { IPicsumImage } from "@/interfaces/avatar.interface";
+const limit = import.meta.env.VITE_FETCH_LIMIT;
 
 // fetch users
 const fetchUserData = async (): Promise<IUser[]> => {
-  const response = await axios.get("https://dummyjson.com/users?limit=12");
+  const response = await axios.get(`https://dummyjson.com/users?limit=${limit}`);
   const users = response.data?.users || [];
   return users.map((user: IUser) => ({
     id: user.id,
@@ -17,7 +18,7 @@ const fetchUserData = async (): Promise<IUser[]> => {
 
 // fetch avatars
 const fetchAvatars = async (): Promise<string[]> => {
-  const response = await axios.get<IPicsumImage[]>("https://picsum.photos/v2/list?page=1&limit=12");
+  const response = await axios.get<IPicsumImage[]>(`https://picsum.photos/v2/list?page=1&limit=${limit}`);
   return response.data?.map((image: IPicsumImage) => `https://picsum.photos/id/${image.id}/100/100`);
 };
 
