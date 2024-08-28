@@ -6,7 +6,7 @@ Welcome to the OBS Frontend assignment. This project is a simple user management
 
 ## Features
 
-- **User Interface**: Built using React with [TailwindCSS](https://tailwindcss.com/).
+- **User Interface**: Built using React with UI framework [daisyUI](https://daisyui.com/) included [TailwindCSS](https://tailwindcss.com/).
 - **Responsive Design**: The application is responsive on both desktop and mobile devices.
 - **Data Fetching**: JSON data is fetched from REST API endpoints.
 - **State Management**: Centralized state using [Zustand](https://zustand-demo.pmnd.rs/).
