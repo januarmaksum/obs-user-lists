@@ -1,8 +1,9 @@
-import { IUser } from "@/interfaces/user.interface";
-import useUserStore from "@/store/userStore";
+// using relative path, because using @ alias it doesn't work for testing
+import { IUser } from "../../interfaces/user.interface";
+import useUserStore from "../../store/userStore";
 
 interface UserCardProps extends IUser {
-  onClickCard: () => void;
+  onClickCard?: () => void;
 }
 
 export default function UserCard({

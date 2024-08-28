@@ -11,7 +11,7 @@ Welcome to the OBS Frontend assignment. This project is a simple user management
 - **Data Fetching**: JSON data is fetched from REST API endpoints.
 - **State Management**: Centralized state using [Zustand](https://zustand-demo.pmnd.rs/).
 - **User Management**: Features to add, edit, and delete users, updating the state accordingly.
-- **Environment Configuration**: TypeScript, ESLint, and Prettier configured for consistent and error-free development.
+- **Environment Configuration**: TypeScript, ESLint, and Prettier configured for consistent development.
 - **Unit Testing**: Implemented using React Testing Library.
 - **Deployment**: Hosted on [Vercel](https://vercel.com/) for a live demo. You can access the live demo [here](https://obs-user-lists-six.vercel.app/).
 
