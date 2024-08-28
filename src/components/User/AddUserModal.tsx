@@ -90,19 +90,18 @@ export default function AddUserModal({
   }, [isOpen]);
 
   return (
-    <dialog className="modal modal-bottom sm:modal-middle" ref={dialog}>
+    <dialog id="modalDialog" className="modal modal-bottom sm:modal-middle" ref={dialog}>
       <div className="modal-box relative">
-        <form method="dialog" onKeyDown={handleKeyPress}>
-          <button
-            onClick={() => {
-              onClose();
-              resetForm();
-            }}
-            className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-          >
-            <X />
-          </button>
-        </form>
+        <label
+          htmlFor="modalDialog"
+          onClick={() => {
+            onClose();
+            resetForm();
+          }}
+          className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+        >
+          <X />
+        </label>
         <div className="border-b pb-2 border-gray-600">
           <h3 className="font-bold text-lg text-white">Add user</h3>
         </div>

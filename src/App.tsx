@@ -9,6 +9,7 @@ import useUserStore from "@/store/userStore";
 import { fetchUsers } from "@/services/userService";
 import { IUser } from "@/interfaces/user.interface";
 import { generateRandomId } from "@/utils";
+const totalData = import.meta.env.VITE_FETCH_LIMIT;
 
 function App() {
   const { users, setUsers } = useUserStore();
@@ -72,20 +73,20 @@ function App() {
         />
       )}
       {loading && !error ? (
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {Array.from({ length: 12 }).map((_, index) => (
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 pt-0 lg:p-0">
+          {Array.from({ length: totalData }).map((_, index) => (
             <UserCardSkeleton key={index} />
           ))}
         </div>
       ) : error ? (
         <div className="flex pt-60 justify-center items-center flex-col gap-5 text-center">
           <UserSearch size={104} />
-          <h2 className="text-2xl">{error}</h2>
+          <h2 className="text-2xl text-balance">{'Failed to load users. Please try again later.'}</h2>
         </div>
       ) : users.length === 0 ? (
         <div className="flex pt-60 justify-center items-center flex-col gap-5 text-center">
           <UserRoundX size={104} />
-          <h2 className="text-2xl">User not found. Please add user.</h2>
+          <h2 className="text-2xl text-balance">User not found. Please add user.</h2>
         </div>
       ) : (
         <UserLists users={users} />
