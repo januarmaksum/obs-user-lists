@@ -146,6 +146,7 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
                 value={userDetails.firstName || ""}
                 onChange={handleChange}
                 className="input input-bordered w-full"
+                required
               />
             </label>
             <label className="form-control w-full">
@@ -158,6 +159,7 @@ const UserModal: React.FC<UserModalProps> = ({ title, isOpen, onClose }) => {
                 value={userDetails.lastName || ""}
                 onChange={handleChange}
                 className="input input-bordered w-full"
+                required
               />
             </label>
           </div>
